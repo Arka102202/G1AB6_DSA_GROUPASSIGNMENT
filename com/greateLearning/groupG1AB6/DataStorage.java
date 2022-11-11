@@ -3,7 +3,7 @@ package com.greateLearning.groupG1AB6;
 import java.util.LinkedList;
 
 public class DataStorage {
-    static Node root = null, newRoot = null, pNode1 = null, pNode2 = new Node(0);
+    static Node root = null, newRoot = null, pNode = new Node(0);
     static Node createBST(int val, Node node){
         if (node == null) node = new Node(val);
         else {
@@ -15,14 +15,8 @@ public class DataStorage {
     static void createSkewBST(Node node){
         if (node != null) {
             createSkewBST(node.left);
-            if (newRoot == null) {
-                newRoot = new Node(node.val);
-                pNode2 = newRoot.right = new Node(null);
-            }
-            else {
-                pNode2.val = node.val;
-                pNode2 = pNode2.right = new Node(null);
-            }
+            pNode.val = node.val;
+            pNode = pNode.right = new Node(null);
             createSkewBST(node.right);
         }
     }
@@ -40,15 +34,16 @@ public class DataStorage {
         root = createBST(14,root);
         root = createBST(5,root);
 
+        newRoot = new Node(null);
+        pNode = newRoot;
         // Creating the rightSkewed BST
         createSkewBST(root);
-
+        pNode = null;
         // printing out the tree using level order traversal in ascending order
         display();
 
     }
     private static void display() {
-        pNode2 = null;
         LinkedList<Node> stack = new LinkedList<>();
         stack.add(newRoot);
         int j = 0;
