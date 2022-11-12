@@ -61,12 +61,4 @@ public class DataStorage {
             if (stack.size() > 0) System.out.println(" ".repeat(j++) + "\\");
         }
     }
-    static class Node{
-        Integer val;
-        Node left,right;
-        public Node(Integer val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
 }
